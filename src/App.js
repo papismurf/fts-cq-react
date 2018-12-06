@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+//In your react App.js or yourComponent.js file add these lines to import
+import * as Survey from "survey-react";
+import "survey-react/survey.css";
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,7 +13,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Client Questionnaire
           </p>
           <a
             className="App-link"
@@ -17,7 +21,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Start Here
           </a>
         </header>
       </div>

@@ -1,12 +1,13 @@
 {
   "name": "fts-cq-react",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "aws-amplify": "^1.1.11",
     "aws-amplify-react": "^2.1.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-router-dom": "latest",
     "react-scripts": "2.1.1",
     "survey-react": "^1.0.59"
   },

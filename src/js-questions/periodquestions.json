@@ -1,0 +1,52 @@
+{
+	"version": "1.2",
+	"tasks": [
+		{
+			"type": "header",
+			"description": "Testing time periods",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "These questions are because you said YES to crack",
+					"tasks": [
+						{
+						"type": "ftstimeperiods",
+						"description": "Date last used",
+						"tasksPerPeriod": [
+							{
+								"type": "integer",
+								"description": "Days used out of above time scale"
+							},
+							{
+								"type": "currency",
+								"description": "Value per day"
+							},
+							{
+								"type": "textarea",
+								"description": "Comments"
+							}
+						]
+						}
+					]
+				}
+			]
+
+		},
+		{
+			"type": "header",
+			"description": "Review",
+			"tasks": [
+
+				{
+					"type": "signature",
+					"description": "Please sign here"
+				},
+
+				{
+					"type": "review",
+					"description": "Please review the answers given"
+				}
+			]
+		}
+	]
+}

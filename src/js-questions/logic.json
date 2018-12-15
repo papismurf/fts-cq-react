@@ -1,0 +1,96 @@
+{
+	"version": "1.2",
+	"tasks": [
+
+		{
+			"type": "header",
+			"description": "Testing Logic",
+			"tasks": [
+				{
+					"type": "picklist",
+					"description": "Please choose on of these",
+					"multiple": "false",
+					"values": [
+						{
+							"name": "Show Question Track 1",
+							"exclusive": true,
+							"setVarTrue": "showq1"
+						},
+
+						{
+							"name": "Show Question Track 2",
+							"exclusive": true,
+							"setVarTrue": "showq2"
+						},
+
+						{
+							"name": "Show Question Track 3",
+							"exclusive": true,
+							"setVarTrue": "showq3"
+						},
+
+						{
+							"name": "Show Question Track 4",
+							"exclusive": true,
+							"setVarTrue": "showq4"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Question Track 1",
+			"ifVarTrue": "showq1",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "Here is some info as part of question track 1"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Question Track 2",
+			"ifVarTrue": "showq2",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "Here is some info as part of question track 2"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Question Track 3",
+			"ifVarTrue": "showq3",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "Here is some info as part of question track 3"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Question Track 4",
+			"ifVarTrue": "showq4",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "Here is some info as part of question track 4"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Another review page",
+			"tasks" : [
+				{
+					"type": "info",
+					"description": "All done"
+				}
+			]
+		}
+	]
+}

@@ -1,45 +1,78 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
+import "./Questionnaire.css";
+import "bootstrap/dist/css/bootstrap.css";
 
-class App extends Component {
-    //Define Survey JSON
-    //Here is the simplest Survey with one text question
-    json = {
-        elements: [
-            { type: "text", name: "customerName", title: "What is your name?", isRequired: true}
-        ]
-    };
+import "jquery-ui/themes/base/all.css";
+import "nouislider/distribute/nouislider.css";
+import "select2/dist/css/select2.css";
+import "bootstrap-slider/dist/css/bootstrap-slider.css";
 
-    //Define a callback methods on survey complete
-    onComplete(survey, options) {
-        //Write survey results into database
-        console.log("Survey results: " + JSON.stringify(survey.data));
+import "jquery-bar-rating/dist/themes/css-stars.css";
+
+import $ from "jquery";
+import "jquery-ui/ui/widgets/datepicker.js";
+import "select2/dist/js/select2.js";
+import "jquery-bar-rating";
+
+import * as widgets from "surveyjs-widgets";
+
+import logic from '../js-questions/03.json';
+import process from '../helper';
+
+
+
+widgets.icheck(Survey, $);
+widgets.select2(Survey, $);
+widgets.inputmask(Survey);
+widgets.jquerybarrating(Survey, $);
+widgets.jqueryuidatepicker(Survey, $);
+widgets.nouislider(Survey);
+widgets.select2tagbox(Survey, $);
+widgets.signaturepad(Survey);
+widgets.sortablejs(Survey);
+widgets.ckeditor(Survey);
+widgets.autocomplete(Survey, $);
+widgets.bootstrapslider(Survey);
+
+class Questionnaire extends Component {
+
+
+    componentWillMount() {
+        import("icheck");
+        window["$"] = window["jQuery"] = $;
     }
+
+    onValueChanged(result) {
+
+
+    }
+
+    onComplete(result) {
+
+        console.log(result);
+    }
+
     render() {
-        //Create the model and pass it into react Survey component
-        //You may create survey model outside the render function and use it in your App or component
-        //The most model properties are reactive, on their change the component will change UI when needed.
-        var model = new Survey.constructor(json
-    :
-        {elements: {isRequired: boolean; name: string; type: string; title: string}[]}
-    )
-        {
-            super();
-        }
-        Model(this.json);
-        return (<Survey.Survey model={model} onComplete={this.onComplete}/>);
-        /*
-        //The alternative way. react Survey component will create survey model internally
-        return (<Survey.Survey json={this.json} onComplete={this.onComplete}/>);
-        */
-        //You may pass model properties directly into component or set it into model
-        // <Survey.Survey model={model} mode="display"/>
-        //or 
-        // model.mode="display"
-        // <Survey.Survey model={model}/>
-        // You may change model properties outside render function. 
-        //If needed react Survey Component will change its behavior and change UI.
+        Survey.Survey.cssType = "bootstrap";
+        var model = new Survey.Model(process(logic));
+        return (
+            <div className="App">
+
+                <div className="surveyjs">
+
+
+                    <Survey.Survey
+                        model={model}
+                        onComplete={this.onComplete}
+                        onValueChanged={this.onValueChanged}
+                    />
+                </div>
+
+            </div>
+        );
     }
-} 
+}
+
+export default Questionnaire;

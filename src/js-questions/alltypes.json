@@ -1,0 +1,154 @@
+{
+	"version": "1.2",
+	"tasks": [
+		{
+			"type": "header",
+			"description": "Personal Details",
+			"tasks": [
+				{
+					"type": "name"
+				},
+				{ 
+					"type": "date",
+					"description" : "Date of Birth"
+				},
+				{
+					"type": "caseno"
+				}
+			]
+
+		},
+		
+		{
+			"type": "header",
+			"description": "Testing All Question Types - except time periods",
+			"tasks": [
+				{
+
+					"id": "hair.scalp.wash.onlywater.history",
+					"type": "activityhistory",
+					"activity": "washed",
+					"desciption": "Activity Washed Question"
+				},
+				{
+					"type": "drughistory",
+					"drug": "heroin-test",
+					"description": "Drug history question"
+				},
+				{
+					"type": "dateish",
+					"description": "Please enter a date"
+				},
+
+				{
+					"type": "date",
+					"description": "Please enter a date"
+				},
+				{
+					"type": "number",
+					"description": "Please enter a number"
+				},
+				{
+					"type": "integer",
+					"description": "Please enter a whole number"
+				},
+				{
+					"type": "currency",
+					"description": "Please enter an amount of pounds"
+				},
+				{
+					"type": "photo",
+					"description": "Please take a photo of the client"
+				},
+				{
+					"type": "text",
+					"description": "Please enter some text"
+				},
+				{
+					"type": "textarea",
+					"description": "Please enter some extended text"
+				},
+				{
+					"type":"picklist",
+					"description": "Pick One from here",
+
+					"values": [
+						{
+							"name": "Male",
+							"showtasks": false,
+							"exclusive": true
+						},
+						{
+							"name": "Female",
+							"showtasks": true,
+							"exclusive": true,
+							"setVarTrue": "pregnant"
+						},
+						{
+							"name": "Male to Female",
+							"showtasks": false,
+							"exclusive": true
+						},
+						{
+							"name": "Female to Male",
+							"showtasks": true,
+							"exclusive": true,
+							"setVarTrue": "pregnant"
+						}
+					],
+					"multiple": false
+				},
+				{
+					"type": "picklist",
+					"description": "Swim location - you can select many",
+					"values": [
+						{
+							"name": "Swimming Pool",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Sea",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "River",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Other",
+							"showtasks": true,
+							"exclusive": false
+						}
+					],
+					"multiple": true,
+					"tasks": [
+						{
+							"type": "textarea",
+							"description": "Other"
+						}
+					]
+				},
+				{
+					"type": "signature",
+					"description": "Please sign here"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Review",
+			"tasks": [
+				{
+					"type": "review",
+					"description": "Please review the answers given"
+				},
+				{
+					"type":"submit"
+				}
+			]
+		}
+	]
+}

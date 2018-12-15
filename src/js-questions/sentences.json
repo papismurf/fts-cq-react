@@ -1,0 +1,16 @@
+{
+	"version": "1.2",
+	"tasks": [
+		{
+			"type": "header",
+			"description": "Sentences",
+			"tasks": [
+				{
+					"type": "drughistory",
+					"drug": "heroin",
+					"description": "Drug history question"
+				}
+			]
+		}
+	]
+}

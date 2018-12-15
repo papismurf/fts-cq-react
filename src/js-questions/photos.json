@@ -1,0 +1,35 @@
+{
+	"version": "1.2",
+	"tasks": [
+
+		{
+			"type": "header",
+			"description": "Testing Multiple Photos",
+			"tasks": [
+				{
+					"type": "photo",
+					"description": "Please take a photo of the client"
+				},
+
+				{
+					"type": "photo",
+					"description": "Please take a photo of your dog/cat/house plant"
+				},
+				{
+					"type": "photo",
+					"description": "Please take a photo of your favourite drink"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Review",
+			"tasks": [
+				{
+					"type": "review",
+					"description": "Please review the answers given"
+				}
+			]
+		}
+	]
+}

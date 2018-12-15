@@ -1,0 +1,405 @@
+{
+	"version": "1.2",
+	"tasks": [
+		{
+			"type": "header",
+			"description": "Street Drugs Used - Crack - Version 2",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "This section is visible because Crack use was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcrack"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcrack"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakencrack"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"type": "text",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcrack"
+								},
+								{
+									"type": "text",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcrack"
+								},
+								{
+									"type": "text",
+									"description": "How was it taken?",
+									"ifVarTrue": "othertakencrack"
+								}
+							]
+						},
+						{
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"type": "dateish",
+							"description": "When did you last use the drug?"
+						},
+						{
+							"type": "picklist",
+							"multiple": false,
+							"description": "Did you use it daily up to that point?",
+							"values": [
+								{
+									"name": "Yes",
+									"setVarTrue": "crackdaily",
+									"showtasks": true
+								},
+								{
+									"name": "No",
+									"setVarTrue": "askcrackcoupledays"
+								}
+							],
+							"tasks": [
+								{
+									"type": "dateish",
+									"description": "When did you start using daily"
+								},
+								{
+									"type": "currency",
+									"description": "How much each time?"
+								},
+								{ 
+									"type": "textarea",
+									"description": "Further comments on Daily Crack Usage."
+								}
+							]
+						},
+						{
+							"type": "picklist",
+							"multiple": false,
+							"description": "Did you use every couple of days?",
+							"ifVarTrue": "askcrackcoupledays",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true
+								},
+								{
+									"name": "No",
+									"setVarTrue": "askcrackweekly"
+								}
+							],
+							"tasks": [
+								{
+									"type": "dateish",
+									"description": "When did you start using regularly?"
+								},
+								{
+									"type": "currency",
+									"description": "How much each time?"
+								},
+								{ 
+									"type": "textarea",
+									"description": "Further comments?"
+								}
+							]
+						},
+						{
+							"type": "picklist",
+							"multiple": false,
+							"description": "Did you use every week?",
+							"ifVarTrue": ["askcrackcoupledays","askcrackweekly"],
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true
+								},
+								{
+									"name": "No",
+									"setVarTrue": "askcrackmonthly"
+								}
+							],
+							"tasks": [
+								{
+									"type": "dateish",
+									"description": "When did you start using?"
+								},
+								{
+									"type": "currency",
+									"description": "How much each time?"
+								},
+								{
+									"type": "picklist",
+									"description": "Were there days you were more likely to use? Which ones?",
+									"multiple": true,
+									"values": [
+										{
+											"name": "Monday"
+										},
+										{
+											"name": "Tuesday"
+										},
+										{
+											"name": "Wednesday"
+										},
+										{
+											"name": "Thursday"
+										},
+										{
+											"name": "Friday"
+										},
+										{
+											"name": "Saturday"
+										},
+										{
+											"name": "Sunday"
+										},
+										{
+											"name": "There was no pattern",
+											"exclusive": true
+										}
+									]
+								},
+								{ 
+									"type": "textarea",
+									"description": "Further comments?"
+								}
+							]
+						},
+						{
+							"type": "picklist",
+							"multiple": false,
+							"description": "Did you use every month?",
+							"ifVarTrue": ["askcrackcoupledays","askcrackweekly","askcrackmonthly"],
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true
+								},
+								{
+									"name": "No"
+								}
+							],
+							"tasks": [
+								{
+									"type": "dateish",
+									"description": "When did you start using?"
+								},
+								{
+									"type": "currency",
+									"description": "How much each time?"
+								},
+								{
+									"type": "picklist",
+									"description": "Were there days you were more likely to use? Which ones?",
+									"multiple": true,
+									"values": [
+										{
+											"name": "Monday"
+										},
+										{
+											"name": "Tuesday"
+										},
+										{
+											"name": "Wednesday"
+										},
+										{
+											"name": "Thursday"
+										},
+										{
+											"name": "Friday"
+										},
+										{
+											"name": "Saturday"
+										},
+										{
+											"name": "Sunday"
+										},
+										{
+											"name": "There was no pattern",
+											"exclusive": true
+										}
+									]
+								},
+								{ 
+									"type": "textarea",
+									"description": "Further comments?"
+								}
+							]
+						}
+						
+					]
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Clean periods",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "I suggest we ask about periods of remission separately to the drug taking"
+
+				},
+				{
+					"type": "picklist",
+					"multiple": false,
+					"description": "Did you have any special periods of remission/abstinence?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"setVarTrue": "secondremission"
+						},
+						{
+							"name": "No"
+						}
+					],
+					"tasks": [
+						{
+							"type": "dateish",
+							"description": "When did the period of remission START?"
+						},
+						{
+							"type": "dateish",
+							"description": "When did the period of remission END?"
+						}
+					]
+
+
+				},
+				{
+					"type": "picklist",
+					"multiple": false,
+					"ifVarTrue": "secondremission",
+					"description": "Did you have another, second,  special periods of remission/abstinence?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"setVarTrue": "thidremission"
+						},
+						{
+							"name": "No"
+						}
+					],
+					"tasks": [
+						{
+							"type": "dateish",
+							"description": "When did the period of remission START?"
+						},
+						{
+							"type": "dateish",
+							"description": "When did the period of remission END?"
+						}
+					]
+
+				},
+				{
+					"type": "picklist",
+					"multiple": false,
+					"ifVarTrue": "secondremission",
+					"description": "Did you have another, third,  special periods of remission/abstinence?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"setVarTrue": "thidremission"
+						},
+						{
+							"name": "No"
+						}
+					],
+					"tasks": [
+						{
+							"type": "dateish",
+							"description": "When did the period of remission START?"
+						},
+						{
+							"type": "dateish",
+							"description": "When did the period of remission END?"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Review page",
+			"tasks" : [
+				{
+					"type": "review",
+					"description": "All done"
+				},
+
+				{
+					"type": "info",
+					"description": "All done"
+				}
+			]
+		}
+	]
+}

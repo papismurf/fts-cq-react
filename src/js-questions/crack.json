@@ -1,0 +1,144 @@
+{
+	"version": "1.2",
+	"tasks": [
+		{
+			"type": "header",
+			"description": "Street Drugs Used - Crack",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "This section is visible because Crack use was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcrack"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcrack"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakencrack"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"type": "text",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcrack"
+								},
+								{
+									"type": "text",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcrack"
+								},
+								{
+									"type": "text",
+									"description": "How was it taken?",
+									"ifVarTrue": "othertakencrack"
+								}
+							]
+						},
+						{
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"type": "ftstimeperiods",
+							"description": "Date last used",
+							"tasksPerPeriod": [
+								{
+									"type": "integer",
+									"description": "Days used out of above time scale"
+								},
+								{
+									"type": "currency",
+									"description": "Value per day"
+								},
+								{
+									"type": "textarea",
+									"description": "Comments"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "header",
+			"description": "Review page",
+			"tasks" : [
+				{
+					"type": "review",
+					"description": "All done"
+				},
+
+				{
+					"type": "info",
+					"description": "All done"
+				}
+			]
+		}
+	]
+}

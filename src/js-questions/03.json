@@ -1,0 +1,7589 @@
+{
+	"version": "3.0",
+	"tasks": [
+		{
+			"id": "header.clientdetails",
+			"type": "header",
+			"description": "Client Details",
+			"tasks": [
+				{
+					"id": "name",
+					"type": "name"
+				},
+				{
+					"id": "caseno",
+					"type":"caseno"
+				},
+				{
+					"id": "dob",
+					"type": "date",
+					"description": "DOB",
+					"cast": "date"
+				},
+				{
+					"id": "photo",
+					"name": "Photo of client",
+					"type": "photo",
+					"description": "Please take a photo of the client"
+				},
+				{
+					"id": "sex",
+					"type": "picklist",
+					"description": "Sex",
+					"values": [
+						{
+							"name": "Male",
+							"showtasks": false,
+							"exclusive": true
+						},
+						{
+							"name": "Female",
+							"showtasks": true,
+							"exclusive": true,
+							"setVarTrue": "pregnant"
+						},
+						{
+							"name": "Male to Female",
+							"showtasks": false,
+							"exclusive": true
+						},
+						{
+							"name": "Female to Male",
+							"showtasks": true,
+							"exclusive": true,
+							"setVarTrue": "pregnant"
+						}
+					],
+					"multiple": false
+				}
+			]
+		},
+		{
+			"id": "header.general",
+			"type": "header",
+			"description": "General",
+			"tasks": [
+				{
+					"id": "alcohol.self",
+					"type": "picklist",
+					"description": "Do you drink alcohol?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false,
+							"setVarTrue": "refalc"
+						}
+					],
+					"multiple": false
+
+				},
+				{
+					"id": "alcohol.problem",
+					"type": "picklist",
+					"description": "Do you have / had an alcohol problem?",
+					"values": [
+						{
+							"name": "Yes",
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false,
+							"setVarTrue": "refalc"
+						}
+					],
+
+					"multiple": false
+				},
+				{
+					"id": "alcohol.3rdparty",
+					"type": "picklist",
+					"description": "Do other people think you have / had an alcohol problem?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"type": "textarea",
+							"description": "Comments"
+						}
+					],
+					"ifVarTrue": "refalc"
+				},
+				{
+					"id": "drugs.street.used",
+					"type": "picklist",
+					"description": "Have you ever used illicit or street drugs?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false,
+							"setVarTrue": "refdrug"
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "drugs.street.problem",
+					"type": "picklist",
+					"description": "Do you have / had an drug problem?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false,
+							"setVarTrue": "refdrug"
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "drug.street.3rdparty",
+					"type": "picklist",
+					"description": "Do other people think you have / had a drug problem?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"ifVarTrue": "refdrug"
+				},
+				{
+					"id": "alcohol.cirrhosis",
+					"type": "picklist",
+					"description": "Do you have / had Cirrhosis?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "alcohol.liver.cirrhosis.startdate",
+							"type": "dateish",
+							"description": "When did the Cirrhosis start?"
+						},
+						{
+							"id": "alcohol.liver.cirrhosis.comments",
+							"type": "textarea",
+							"description": "Comments"
+						}
+					]
+				},
+				{
+					"id": "alcohol.liver.other",
+					"type": "picklist",
+					"description": "Do you have / had Other Liver problem?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "alcohol.liver.other.start",
+							"type": "dateish",
+							"description": "When started?"
+						},
+						{
+							"id": "alcohol.liver.other.end",
+							"type": "dateish",
+							"description": "When finished?"
+						},
+						{
+							"id": "alcohol.liver.other.comments",
+							"type": "textarea",
+							"description": "Comments"
+						}
+					]
+				},
+				{
+					"id": "diabetes",
+					"type": "picklist",
+					"description": "Do you have / had Diabetes?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "diabetes.start",
+							"type": "dateish",
+							"description": "When started?"
+						},
+						{
+							"id": "diabetes.end",
+							"type": "dateish",
+							"description": "When finished?"
+						},
+						{
+							"id": "diabetes.comments",
+							"type": "textarea",
+							"description": "Comments"
+						}
+					]
+				},
+				{
+					"id": "anaemia",
+					"type": "picklist",
+					"description": "Do you have / had Anaemia?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "anaemia.start",
+							"type": "dateish",
+							"description": "When started?"
+						},
+						{
+							"id": "anaemia.end",
+							"type": "dateish",
+							"description": "When finished?"
+						},
+						{
+							"id": "anaemia.comments",
+							"type": "textarea",
+							"description": "Comments"
+						}
+					]
+				},
+				{
+					"id": "blood.thick",
+					"type": "picklist",
+					"description": "Do you have / had Thick blood?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "blood.thick.start",
+							"type": "dateish",
+							"description": "When started?"
+						},
+						{
+							"id": "blood.thick.end",
+							"type": "dateish",
+							"description": "When finished?"
+						},
+						{
+							"id": "blood.thick.comments",
+							"type": "textarea",
+							"description": "Comments"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "header.pregnancy",
+			"type": "header",
+			"description": "Pregnancy",
+			"ifVarTrue": "pregnant",
+			"tasks": [
+				{
+					"id": "pregnancy",
+					"type": "picklist",
+					"description": "Are you currently pregnant?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false,
+							"setVarTrue": "previouslypregnant"
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "pregnancy.duedate",
+							"type": "dateish",
+							"description": "Due Date"
+						}
+					]
+				},
+				{
+					"id": "pregnancy.12months",
+					"type": "picklist",
+					"description": "Have you been pregnant in the last 12 months?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "pregnancy.12months.outcome",
+							"type": "picklist",
+							"description": "Pregnancy outcome",
+							"values": [
+								{
+									"name": "Normal Delivery",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "pregnancyoutcome"
+								},
+								{
+									"name": "C section",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "pregnancyoutcome"
+								},
+								{
+									"name": "Miscarriage",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Termination",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Ectopic",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					],
+					"ifVarTrue": "previouslypregnant"
+				},
+				{
+					"id": "pregnancy.12months.term",
+					"type": "integer",
+					"description": "Term in weeks?",
+					"ifVarTrue": "pregnancyoutcome"
+				},
+				{
+					"id": "pregnancy.12months.breastfed",
+					"type": "picklist",
+					"description": "Did you breast feed?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "pregnancy.12months.breastfed.term",
+							"type": "integer",
+							"description": "For how many weeks?"
+						}
+					],
+					"ifVarTrue": "pregnancyoutcome"
+				}
+			]
+		},
+		{
+			"id": "header.origin",
+			"type": "header",
+			"description": "Origin",
+			"tasks": [
+				{
+					"id": "ethnicity",
+					"type": "picklist",
+					"description": "What is your ethnic origin?",
+					"values": [
+						{
+							"name": "Northern white European",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Southern white European",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Middle Eastern",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "African",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Indian",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Chinese",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Other",
+							"showtasks": true,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "ethnicity.other",
+							"type": "textarea",
+							"description": "Other"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "header.scalp",
+			"type": "header",
+			"description": "Scalp Hair",
+			"tasks": [
+				{
+					"id": "hair.scalp.colour",
+					"type": "picklist",
+					"description": "What is the natural adult colour of your scalp hair?",
+					"values": [
+						{
+							"name": "Black",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Dark Brown",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Brown",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Light Brown",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Ginger",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Yellow",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Fully Blonde",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Albino",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Grey",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				}
+			]
+		},
+		{
+			"id": "header.streetdrugs",
+			"type": "header",
+			"description": "Street Drugs Used",
+			"tasks": [
+				{
+					"id": "drugs.street.chooser.cocaine",
+					"type": "checklist",
+					"description": "In the last 12 months have you taken Crack and/or Cocaine?",
+					"values": [
+						{
+							"name": "Crack",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "crack"
+						},
+						{
+							"name": "Cocaine",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "cocaine"
+						},
+						{
+							"name": "None",
+							"showtasks": false,
+							"exclusive": true
+						}
+					],
+					"multiple": true
+				},
+				{
+					"id": "drugs.street.cannabis.chooser",
+					"type": "checklist",
+					"description": "Cannabis?",
+					"values": [
+						{
+							"name": "Grass",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "grass"
+						},
+						{
+							"name": "Skunk",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "skunk"
+						},
+						{
+							"name": "Resin",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "resin"
+						},
+						{
+							"name": "Other",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "cannabisother"
+						},
+						{
+							"name": "None",
+							"showtasks": false,
+							"exclusive": true
+						}
+					],
+					"multiple": true
+				},
+				{
+					"id": "drugs.street.others.chooser",
+					"type": "checklist",
+					"description": "And/or any of the following Methamphetamine, Ketamine, Steroids, MDMA, Legal-Illegal highs, Heroin, Amphetamine?",
+					"values": [
+						{
+							"name": "Methamphetamine",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "methamphetamine"
+						},
+						{
+							"name": "Ketamine",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "Ketamine"
+						},
+						{
+							"name": "Steroids",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "Steroids"
+						},
+						{
+							"name": "MDMA",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "MDMA"
+						},
+						{
+							"name": "Legal-Illegal highs",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "LegalIllegal"
+						},
+						{
+							"name": "Heroin",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "Heroin"
+						},
+						{
+							"name": "Amphetamine",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "Amphetamine"
+						},
+						{
+							"name": "Other",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "other"
+						},
+						{
+							"name": "None",
+							"showtasks": false,
+							"exclusive": true
+						}
+					],
+					"multiple": true
+				}
+			]
+		},
+		{
+			"id": "header.streetdrugs.crack",
+			"type": "header",
+			"description": "Street Drugs Used - Crack",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.crack",
+					"type": "info",
+					"description": "This section is visible because Crack use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.crack.methods",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcrack"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcrack"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakencrack"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.crack.howdrunk",
+									"type": "text",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcrack"
+								},
+								{
+									"id": "drugs.street.crack.howinserted",
+									"type": "text",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcrack"
+								},
+								{
+									"id": "drugs.street.crack.howtaken",
+									"type": "text",
+									"description": "How was it taken?",
+									"ifVarTrue": "othertakencrack"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.crack.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.crack.history",
+							"type": "drughistory",
+							"drug": "Crack"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "crack"
+		},
+		{
+			"id": "header.streetdrugs.cocaine",
+			"type": "header",
+			"description": "Street Drugs Used - Cocaine",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.cocaine",
+					"type": "info",
+					"description": "This section is visible because Cocaine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.cocaine.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcocaine"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcocaine"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakencocaine"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.cocaine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcocaine"
+								},
+								{
+									"id": "drugs.street.cocaine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcocaine"
+								},
+								{
+									"id": "drugs.street.cocaine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakencocaine"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.cocaine.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.cocaine.history",
+							"type": "drughistory",
+							"description": "Date last used",
+							"drug": "Cocaine"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "cocaine"
+		},
+		{
+			"id": "header.streetdrugs.grass",
+			"type": "header",
+			"description": "Street Drugs Used - Grass",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.grass",
+					"type": "info",
+					"description": "This section is visible because Grass use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.grass.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkgrass"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedgrass"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakengrass"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.grass.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkgrass"
+								},
+								{
+									"id": "drugs.street.grass.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedgrass"
+								},
+								{
+									"id": "drugs.street.grass.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakengrass"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.grass.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.grass.history",
+							"type": "drughistory",
+							"drug":"Grass"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "grass"
+		},
+		{
+			"id": "header.streetdrugs.skunk",
+			"type": "header",
+			"description": "Street Drugs Used - Skunk",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.skunk",
+					"type": "info",
+					"description": "This section is visible because Skunk use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.skunk.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkskunk"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedskunk"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenskunk"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.skunk.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkskunk"
+								},
+								{
+									"id": "drugs.street.skunk.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedskunk"
+								},
+								{
+									"id": "drugs.street.skunk.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenskunk"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.skunk.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.skunk.history",
+							"type": "drughistory",
+							"drug":"Skunk"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "skunk"
+		},
+		{
+			"id": "header.streetdrugs.resin",
+			"type": "header",
+			"description": "Street Drugs Used - Resin",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.resin",
+					"type": "info",
+					"description": "This section is visible because Resin use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.resin.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkresin"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedresin"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenresin"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.resin.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkresin"
+								},
+								{
+									"id": "drugs.street.resin.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedresin"
+								},
+								{
+									"id": "drugs.street.resin.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenresin"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.resin.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.resin.history",
+							"type": "drughistory",
+							"drug": "Resin"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "resin"
+		},
+		{
+			"id": "header.streetdrugs.cannabis",
+			"type": "header",
+			"description": "Street Drugs Used - Cannabis / Other",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.cannabis",
+					"type": "info",
+					"description": "This section is visible because Cannabis Other use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.cannabis.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcannabis"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcannabis"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakencannabis"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.cannabis.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcannabis"
+								},
+								{
+									"type": "textarea",
+									"id": "drugs.street.cannabis.howinserted",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcannabis"
+								},
+								{
+									"id": "drugs.street.cannabis.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakencannabis"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.cannabis.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+
+						{
+							"id": "drugs.street.cannabis.history",
+							"type": "drughistory",
+							"drug": "Cannabis"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "cannabisother"
+		},
+		{
+			"id": "header.methampheteamine",
+			"type": "header",
+			"description": "Street Drugs Used - Methamphetamine",
+			"tasks": [
+				{
+					"type": "info",
+			"id": "info.streetdrugs.methampheteamine",
+					"description": "This section is visible because Methamphetamine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.methampheteamine.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkmethamphetamine"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedethamphetamine"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenmethamphetamine"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+							"id": "drugs.street.methampheteamine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkmethamphetamine"
+								},
+								{
+							"id": "drugs.street.methampheteamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedmethamphetamine"
+								},
+								{
+							"id": "drugs.street.methampheteamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenmethamphetamine"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.methampheteamine.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.methampheteamine.history",
+							"type": "drughistory",
+							"drug" :"Methamphetamine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "methamphetamine"
+		},
+		{
+			"id": "header.streetdrugs.ketamine",
+			"type": "header",
+			"description": "Street Drugs Used - Ketamine",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.ketamine",
+					"type": "info",
+					"description": "This section is visible because Ketamine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.ketamine.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkketamine"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedketamine"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenketamine"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+							"id": "drugs.street.ketamine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkketamine"
+								},
+								{
+							"id": "drugs.street.ketamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedketamine"
+								},
+								{
+							"id": "drugs.street.ketamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenketamine"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.ketamine.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.ketamine.history",
+							"type": "drughistory",
+							"drug": "Ketamine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Ketamine"
+		},
+		{
+			"id": "header.streetdrugs.steroids",
+			"type": "header",
+			"description": "Street Drugs Used - Steroids",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.steroids",
+					"type": "info",
+					"description": "This section is visible because Steroid use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.steroids.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunksteroids"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedsteroids"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakensteroids"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+							"id": "drugs.street.steroids.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunksteroids"
+								},
+								{
+							"id": "drugs.street.steroids.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedsteroids"
+								},
+								{
+							"id": "drugs.street.steroids.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakensteroids"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.steroids.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.steroids.history",
+							"type": "drughistory",
+							"drug":"Steroids"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Steroids"
+		},
+		{
+			"id": "header.streetdrugs.mdma",
+			"type": "header",
+			"description": "Street Drugs Used - MDMA",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.mdma",
+					"type": "info",
+					"description": "This section is visible because MDMA use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.mdma.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkMDMA"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedMDMA"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenMDMA"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+							"id": "drugs.street.mdma.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkMDMA"
+								},
+								{
+							"id": "drugs.street.mdma.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedMDMA"
+								},
+								{
+							"id": "drugs.street.mdma.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenMDMA"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.mdma.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.mdma.history",
+
+							"type": "drughistory",
+							"drug":"MDMA"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "MDMA"
+		},
+		{
+			"id": "header.streetdrugs.legalillegalhighs",
+			"type": "header",
+			"description": "Street Drugs Used - Legal-Illegal highs",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.legalillegalhighs",
+					"type": "info",
+					"description": "This section is visible because Legal-Illegal highs use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.legalillegalhighs.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkLegalIllegal"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedLegalIllegal"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenLegalIllegal"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+							"id": "drugs.street.legalillegalhighs.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkLegalIllegal"
+								},
+								{
+							"id": "drugs.street.legalillegalhighs.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedLegalIllegal"
+								},
+								{
+							"id": "drugs.street.legalillegalhighs.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenLegalIllegal"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.legalillegalhighs.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.legalillegalhighs.history",
+							"type": "drughistory",
+							"drug":"Legal/Illegal High drugs"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "LegalIllegal"
+		},
+		{
+			"id": "header.streetdrugs.heroin",
+			"type": "header",
+			"description": "Street Drugs Used - Heroin",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.heroin",
+					"type": "info",
+					"description": "This section is visible because Heroin use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.heroin.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkHeroin"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedHeroin"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenHeroin"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+								"id": "drugs.street.heroin.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkHeroin"
+								},
+								{
+							"id": "drugs.street.heroin.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedHeroin"
+								},
+								{
+							"id": "drugs.street.heroin.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenHeroin"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.heroin.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.heroin.history",
+							"type": "drughistory",
+							"drug": "Heroin"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Heroin"
+		},
+		{
+			"id": "header.streetdrugs.amphetamine",
+			"type": "header",
+			"description": "Street Drugs Used - Amphetamine",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.amphetamine",
+					"type": "info",
+					"description": "This section is visible because Amphetamine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.amphetamine.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkAmphetamine"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedAmphetamine"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenAmphetamine"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.amphetamine.howeaten",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkAmphetamine"
+								},
+								{
+								"id": "drugs.street.amphetamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedAmphetamine"
+								},
+								{
+								"id": "drugs.street.amphetamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenAmphetamine"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.amphetamine.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.amphetamine.history",
+							"type": "drughistory",
+							"drug": "Amphetamine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Amphetamine"
+		},
+		{
+			"id": "header.streetdrugs.other",
+			"type": "header",
+			"description": "Street Drugs Used - Other",
+			"tasks": [
+				{
+					"id": "info.streetdrugs.other",
+					"type": "info",
+					"description": "This section is visible because Street Drugs Used Other was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.other.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkother"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedother"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othertakenother"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.other.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkother"
+								},
+								{
+									"id": "drugs.street.other.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedother"
+								},
+								{
+									"id": "drugs.street.other.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othertakenother"
+								}
+							]
+						},
+						{
+							"id": "drugs.street.other.type",
+							"type": "checklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Joints or Spliffs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Pills or Tablets",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Bombs",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Paste",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Rocks",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "drugs.street.other.history",
+							"type": "drughistory",
+							"drug": "Other"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "other"
+		},
+		{
+			"id": "header.pharmacy",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used",
+			"tasks": [
+				{
+					"id": "drugs.prescribed",
+					"type": "picklist",
+					"description": "Have you taken any prescribed or pharmacy obtained medications during the 12 months prior to sample collection?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "drugs.prescribed.opiates.chooser",
+							"type": "checklist",
+							"description": "Please select",
+							"values": [
+								{
+									"name": "Methadone",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Methadone"
+								},
+								{
+									"name": "Buprenorphine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Buprenorphine"
+								},
+								{
+									"name": "Dihydrocodeine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Dihydrocodeine"
+								},
+								{
+									"name": "Tramadol",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Tramadol"
+								},
+
+								{
+									"name": "Codeine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Codeine"
+								},
+								{
+									"name": "Co-codamol",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Co-codamol"
+								},
+								{
+									"name": "Zapain",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "zapain"
+								},
+								{
+									"name": "Diazepam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Diazepam"
+								},
+								{
+									"name": "Temazepam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Temazepam"
+								},
+								{
+									"name": "Nitrazepam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Nitrazepam"
+								},
+								{
+									"name": "Flunitrazepam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Flunitrazepam"
+								},
+								{
+									"name": "Nordiazepam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Nordiazepam"
+								},
+								{
+									"name": "Alprazolam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Alprazolam"
+								},
+								{
+									"name": "Loprazolam",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Loprazolam"
+								},
+								{
+									"name": "Zopiclone",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Zopiclone"
+								},
+								{
+									"name": "Diazepam (Valium)",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Diazepamvalium"
+								},
+								{
+									"name": "Chlordiazepoxide",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Chlordiazepoxide"
+								},
+								{
+									"name": "Zolpidem",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Zolpidem"
+								},
+								{
+									"name": "Sertraline",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Sertraline"
+								},
+								{
+									"name": "Citalopram",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Citalopram"
+								},
+								{
+									"name": "Amitriptyline",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Amitriptyline"
+								},
+								{
+									"name": "Fluoxetine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Fluoxetine"
+								},
+								{
+									"name": "Trazodone",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Trazodone"
+								}
+							],
+							"multiple": true
+						},
+						{
+							"id": "alcohol.treatment",
+							"type": "picklist",
+							"description": "Drug or Alcohol Treatment?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.alcohol-treatment.chooser",
+									"type": "checklist",
+									"description": "Please select",
+									"values": [
+										{
+											"name": "Acamprosate",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "Acamprosate"
+										},
+										{
+											"name": "Librium",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "Librium"
+										}
+									],
+									"multiple": true
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "header.drugs.pharmacy.methadone",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Methadone",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.",
+					"type": "info",
+					"id": "info.drugs.pharmacy.methadone",
+					"description": "This section is visible because Methadone use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.methadone.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourcemethadone"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.methadone.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourcemethadone"
+								}
+							]
+						},
+						{
+							"id": "drugs.pharmacy.methadone.history",
+							"type": "drughistory",
+							"drug": "Methadone"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Methadone"
+		},
+		{
+			"id": "header.drugs.pharmacy.buprenorphine",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Buprenorphine",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.buprenorphine",
+					"type": "info",
+					"description": "This section is visible because Buprenorphine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.buprenorphine.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceBuprenorphine"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.buprenorphine.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceBuprenorphine"
+								}
+							]
+						},
+						{
+							"id": "drugs.pharmacy.buprenorphine.history",
+							"type": "drughistory",
+							"drug": "Buprenorphine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Buprenorphine"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.dihydrocodeine",
+			"description": "Pharmacy Grade Medication Used - Dihydrocodeine",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.dihydrocodeine",
+					"type": "info",
+					"description": "This section is visible because Dihydrocodeine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.dihydrocodeine.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceDihydrocodeine"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.dihydrocodeine.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceDihydrocodeine"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Dihydrocodeine",
+							"id": "drugs.pharmacy.dihydrocodeine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Dihydrocodeine"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.tramadol",
+			"description": "Pharmacy Grade Medication Used - Tramadol",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.tramadol",
+					"type": "info",
+					"description": "This section is visible because Tramadol use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.tramadol.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceTramadol"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.tramadol.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceTramadol"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Tramadol",
+							"id": "drugs.pharmacy.tramadol.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Tramadol"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.acamprosate",
+			"description": "Pharmacy Grade Medication Used - Acamprosate",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.acamprosate",
+					"type": "info",
+					"description": "This section is visible because Acamprosate use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.acamprosate.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceAcamprosate"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.acamprosate.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceAcamprosate"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Acamprosate",
+							"id": "drugs.pharmacy.acamprosate.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Acamprosate"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.librium",
+			"description": "Pharmacy Grade Medication Used - Librium",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.",
+					"type": "info",
+					"description": "This section is visible because Librium use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.librium.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceLibrium"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.librium.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceLibrium"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Librium",
+							"id": "drugs.pharmacy.librium.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Librium"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.codeine",
+			"description": "Pharmacy Grade Medication Used - Codeine",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.codeine",
+					"type": "info",
+					"description": "This section is visible because Codeine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.codeine.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceCodeine"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.codeine.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceCodeine"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Codeine",
+							"id": "drugs.pharmacy.codeine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Codeine"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.co-codamol",
+			"description": "Pharmacy Grade Medication Used - Co-codamol",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.co-codamol",
+					"type": "info",
+					"description": "This section is visible because Co-codamol use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.co-codamol.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceCocodamol"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.co-codamol.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceCocodamol"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Co-Codamol",
+							"id": "drugs.pharmacy.co-codamol.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Co-codamol"
+		},
+		{
+			"id": "header.drugs.pharmacy.zapain",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Zapain",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.zapain",
+					"type": "info",
+					"description": "This section is visible because Zapain use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.zapain.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourcezapain"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.zapain.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourcezapain"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Zapain",
+							"id": "drugs.pharmacy.zapain.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "zapain"
+		},
+		{
+			"type": "header",
+			"id": "header.drugs.pharmacy.diazepam",
+			"description": "Pharmacy Grade Medication Used - Diazepam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.diazepam",
+					"type": "info",
+					"description": "This section is visible because Diazepam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.diazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceDiazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.diazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceDiazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Diazepam",
+							"id": "drugs.pharmacy.diazepam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Diazepam"
+		},
+		{
+			"id": "header.drugs.pharmacy.temazepam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Temazepam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.temazepam",
+					"type": "info",
+					"description": "This section is visible because Temazepam was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.temazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceTemazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.temazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceTemazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Temazepam",
+							"id": "drugs.pharmacy.temazepam.history"
+						}
+
+					]
+				}
+			],
+			"ifVarTrue": "Temazepam"
+		},
+		{
+			"id": "header.drugs.pharmacy.nitrazepam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Nitrazepam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.nitrazepam",
+					"type": "info",
+					"description": "This section is visible because Nitrazepam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.nitrazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceNitrazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.nitrazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceNitrazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Nitrazepam",
+							"id": "drugs.pharmacy.nitrazepam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Nitrazepam"
+		},
+		{
+			"id": "header.drugs.pharmacy.flunitrazepam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Flunitrazepam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.flunitrazepam",
+					"type": "info",
+					"description": "This section is visible because Flunitrazepam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.flunitrazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceFlunitrazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.flunitrazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceFlunitrazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Flunitrazepam",
+							"id": "drugs.pharmacy.flunitrazepam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Flunitrazepam"
+		},
+		{
+			"id": "header.drugs.pharmacy.nordiazepam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Nordiazepam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.nordiazepam",
+					"type": "info",
+					"description": "This section is visible because Nordiazepam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.nordiazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceNordiazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.nordiazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceNordiazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Nordiazepam",
+							"id": "drugs.pharmacy.nordiazepam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Nordiazepam"
+		},
+		{
+			"id": "header.drugs.pharmacy.alprazolam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Alprazolam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.",
+					"type": "info",
+					"description": "This section is visible because Alprazolam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.alprazolam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceAlprazolam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.alprazolam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceAlprazolam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Alprazolam",
+							"id": "drugs.pharmacy.alprazolam.history"
+						}
+
+					]
+				}
+			],
+			"ifVarTrue": "Alprazolam"
+		},
+		{
+			"id": "header.drugs.pharmacy.loprazolam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Loprazolam",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.",
+					"type": "info",
+					"description": "This section is visible because Loprazolam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.loprazolam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceLoprazolam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.loprazolam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceLoprazolam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Loprazolam",
+							"id": "drugs.pharmacy.loprazolam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Loprazolam"
+		},
+		{
+			"id": "header.drugs.pharmacy.zopiclone",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Zopiclone",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.zopiclone",
+					"type": "info",
+					"description": "This section is visible because Zopiclone use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.zopiclone.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceZopiclone"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.zopiclone.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceZopiclone"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Zopiclone",
+							"id": "drugs.pharmacy.zopiclone.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Zopiclone"
+		},
+		{
+			"id": "header.drugs.pharmacy.diazepam",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Diazepam (Valium)",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.diazepam",
+					"type": "info",
+					"description": "This section is visible because Diazepam use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.diazepam.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceDiazepam"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.diazepam.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceDiazepam"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Diazepam",
+							"id": "drugs.pharmacy.diazepam.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Diazepamvalium"
+		},
+		{
+			"id": "header.drugs.pharmacy.chlordiazepoxide",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Chlordiazepoxide",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.chlordiazepoxide",
+					"type": "info",
+					"description": "This section is visible because Chlordiazepoxide use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.chlordiazepoxide.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceChlordiazepoxide"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.chlordiazepoxide.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceChlordiazepoxide"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Chlordiazepoxide",
+							"id": "drugs.pharmacy.chlordiazepoxide.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Chlordiazepoxide"
+		},
+		{
+			"id": "header.drugs.pharmacy.zolpidem",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Zolpidem",
+			"tasks": [
+				{
+
+					"id": "info.drugs.pharmacy.zolpidem",
+					"type": "info",
+					"description": "This section is visible because Zolpidem use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.zolpidem.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceZolpidem"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.zolpidem.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceZolpidem"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Zolpidem",
+							"id": "drugs.pharmacy.zolpidem.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Zolpidem"
+		},
+		{
+			"id": "header.drugs.pharmacy.sertraline",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Sertraline",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.",
+					"type": "info",
+					"description": "This section is visible because Sertaline use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.sertraline.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceSertraline"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceSertraline"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Sertraline",
+							"id": "drugs.pharmacy.sertraline.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Sertraline"
+		},
+		{
+			"id": "header.drugs.pharmacy.citalopram",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Citalopram",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.citalopram",
+					"type": "info",
+					"description": "This section is visible because Citalopram use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.citalopram.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceCitalopram"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.citalopram.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceCitalopram"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Citalopram",
+							"id": "drugs.pharmacy.citalopram.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Citalopram"
+		},
+		{
+			"id": "header.drugs.pharmacy.amitriptyline",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Amitriptyline",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.amitriptyline",
+					"type": "info",
+					"description": "This section is visible because Amitriptyline use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.amitriptyline.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceAmitriptyline"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.amitriptyline.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceAmitriptyline"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Amitriptyline",
+							"id": "drugs.pharmacy.amitriptyline.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Amitriptyline"
+		},
+		{
+			"id": "header.drugs.pharmacy.fluoxetine",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Fluoxetine",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.fluoxetine",
+					"type": "info",
+					"description": "This section is visible because Fluoxetine use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.fluoxetine.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceFluoxetine"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.fluoxetine.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceFluoxetine"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Fluoxetine",
+							"id": "drugs.pharmacy.fluoxetine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Fluoxetine"
+		},
+		{
+			"id": "header.drugs.pharmacy.trazodone",
+			"type": "header",
+			"description": "Pharmacy Grade Medication Used - Trazodone",
+			"tasks": [
+				{
+					"id": "info.drugs.pharmacy.trazodone",
+					"type": "info",
+					"description": "This section is visible because Trazodone use was selected",
+					"tasks": [
+						{
+							"id": "drugs.pharmacy.trazodone.source",
+							"type": "checklist",
+							"description": "Source?",
+							"values": [
+								{
+									"name": "Prescribed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Over the counter",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othersourceTrazodone"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.pharmacy.trazodone.source.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othersourceTrazodone"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Trazodone",
+							"id": "drugs.pharmacy.trazodone.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Trazodone"
+		},
+		{
+			"id": "header.streetdrugs",
+			"type": "header",
+			"description": "Street Drug Exposure",
+			"tasks": [
+				{
+					"id": "drugs.street.exposed",
+					"type": "picklist",
+					"description": "Have you been exposed to any street drugs during the 12 months prior to sample collection?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "drugs.street.exposed.cocaine",
+							"type": "picklist",
+							"description": "Crack and/or Cocaine?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"type": "checklist",
+									"description": "Please select",
+									"values": [
+										{
+											"name": "Crack",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "crackex"
+										},
+										{
+											"name": "Cocaine",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "cocaineex"
+										}
+									],
+									"multiple": true
+								}
+							]
+						},
+						{
+							"id": "drugs.street.exposed.cannabis",
+							"type": "picklist",
+							"description": "Cannabis?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.cannabis.chooser",
+									"type": "checklist",
+									"description": "Please select",
+									"values": [
+										{
+											"name": "Grass",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "grassex"
+										},
+										{
+											"name": "Skunk",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "skunkex"
+										},
+										{
+											"name": "Resin",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "resinex"
+										},
+										{
+											"name": "Other",
+											"showtasks": true,
+											"exclusive": false,
+											"setVarTrue": "cannabisotherex"
+										}
+									],
+									"multiple": true
+								}
+							]
+						},
+						{
+							"id": "drugs.street.exposed.chooser",
+							"type": "checklist",
+							"description": "Please select any others",
+							"values": [
+								{
+									"name": "Methamphetamine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "methamphetamineex"
+								},
+								{
+									"name": "Ketamine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Ketamineex"
+								},
+								{
+									"name": "Steroids",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Steroidsex"
+								},
+								{
+									"name": "MDMA",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "MDMAex"
+								},
+								{
+									"name": "Legal-Illegal highs",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "LegalIllegalex"
+								},
+								{
+									"name": "Heroin",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Heroinex"
+								},
+								{
+									"name": "Amphetamine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "Amphetamineex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherex"
+								}
+							],
+							"multiple": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "header.drugs.street.exposed.crack",
+			"type": "header",
+			"description": "Street Drugs Exposure - Crack",
+			"tasks": [
+				{
+					"id": "info.drugs.street.exposed.crack",
+					"type": "info",
+					"description": "This section is visible because exposure to Crack was selected",
+					"tasks": [
+						{
+							"id": "drugs.street.exposed.crack.howtaken",
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkexcrack"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedexcrack"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherexcrack"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.crack.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkexcrack"
+								},
+								{
+									"id": "drugs.street.exposed.crack.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedexcrack"
+								},
+								{
+									"id": "drugs.street.exposed.crack.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherexcrack"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Crack",
+							"id": "drugs.street.exposed.crack.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "crackex"
+		},
+		{
+			"id": "header.streetdrugs.exposed.cocaine",
+			"type": "header",
+			"description": "Street Drugs Exposure - Cocaine",
+			"tasks": [
+				{
+					"type": "info",
+					"description": "This section is visible because exposure to Cocaine was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcocaineex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcocaineex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othercocaineex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcocaineex"
+								},
+								{
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcocaineex"
+								},
+								{
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othercocaineex"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Other Cocaine",
+							"id": "drugs.pharmacy.othercocaineex.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "cocaineex"
+		},
+		{
+			"id": "header.streetdrugs.exposed.grass",
+			"type": "header",
+			"description": "Street Drugs Exposure - Grass",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.grass",
+					"type": "info",
+					"description": "This section is visible because exposure to Grass was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.grass.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkgrassex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedgrassex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othergrassex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.grass.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkgrassex"
+								},
+								{
+									"id": "drugs.street.exposed.grass.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedgrassex"
+								},
+								{
+									"id": "drugs.street.exposed.grass.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othergrassex"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug": "Grass",
+							"id": "drugs.street.exposed.grass.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "grassex"
+		},
+		{
+			"id": "header.streetdrugs.exposed.skunk",
+			"type": "header",
+			"description": "Street Drugs Exposure - Skunk",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.skunk",
+					"type": "info",
+					"description": "This section is visible because exposure to Skunk was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.skunk.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkskunkex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedskunkex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherskunkex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.skunk.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkskunkex"
+								},
+								{
+									"id": "drugs.street.exposed.skunk.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedskunkex"
+								},
+								{
+									"id": "drugs.street.exposed.skunk.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherskunkex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Skunk",
+							"id": "drugs.street.exposed.skunk.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "skunkex"
+		},
+		{
+			"id": "header.streetdrugs.exposed.resin",
+			"type": "header",
+			"description": "Street Drugs Exposure - Resin",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.resin",
+					"type": "info",
+					"description": "This section is visible because exposure to Resin was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.resin.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkresinex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedresinex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherresinex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.resin.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkresinex"
+								},
+								{
+									"id": "drugs.street.exposed.resin.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedresinex"
+								},
+								{
+									"id": "drugs.street.exposed.resin.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherresinex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Resin",
+							"id": "drugs.street.exposed.resin.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "resinex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.cannabisother",
+			"type": "header",
+			"description": "Street Drugs Exposure - Cannabis / Other",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.cannabisother",
+					"type": "info",
+					"description": "This section is visible because exposure to Cannabis / Other was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.cannabisother.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkcannabisotherex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedcannabisotherex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othercannabisotherex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.cannabisother.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkcannabisotherex"
+								},
+								{
+									"id": "drugs.street.exposed.cannabisother.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedcannabisotherex"
+								},
+								{
+									"id": "drugs.street.exposed.cannabisother.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othercannabisotherex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Cannabis / Other",
+							"id": "drugs.street.exposed.cannabisother.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "cannabisotherex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.methamphetamine",
+			"type": "header",
+			"description": "Street Drugs Exposure - Methamphetamine",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.methamphetamine",
+					"type": "info",
+					"description": "This section is visible because exposure to Methamphetamine was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.methamphetamine.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkmethamphetamineex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedmethamphetamineex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "othermethamphetamineex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.methamphetamine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkmethamphetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.methamphetamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedmethamphetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.methamphetamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "othermethamphetamineex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Methamphetamine",
+							"id": "drugs.street.exposed.methamphetamine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "methamphetamineex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.ketamine",
+			"type": "header",
+			"description": "Street Drugs Exposure - Ketamine",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.ketamine",
+					"type": "info",
+					"description": "This section is visible because exposure to Ketamine was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.ketamine.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkKetamineex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedKetamineex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherKetamineex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.ketamine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkKetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.ketamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedKetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.ketamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherKetamineex"
+								}
+							]
+						},
+						{
+							"type":"drughistory",
+							"drug" : "Ketamine",
+							"id": "drugs.street.exposed.ketamine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Ketamineex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.steroids",
+			"type": "header",
+			"description": "Street Drugs Exposure - Steroids",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.steroids",
+					"type": "info",
+					"description": "This section is visible because exposure Steroids to was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.steroids.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkSteroidsex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedSteroidsex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherSteroidsex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.steroids.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkSteroidsex"
+								},
+								{
+									"id": "drugs.street.exposed.steroids.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedSteroidsex"
+								},
+								{
+									"id": "drugs.street.exposed.steroids.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherSteroidsex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Steroids",
+							"id": "drugs.street.exposed.steroids.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Steroidsex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.mdma",
+			"type": "header",
+			"description": "Street Drugs Exposure - MDMA",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.mdma",
+					"type": "info",
+					"description": "This section is visible because exposure to MDMA was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.mdma.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkMDMAex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedMDMAex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherMDMAex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.mdma.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkMDMAex"
+								},
+								{
+									"id": "drugs.street.exposed.mdma.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedMDMAex"
+								},
+								{
+									"id": "drugs.street.exposed.mdma.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherMDMAex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "MDMA",
+							"id": "drugs.street.exposed.mdma.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "MDMAex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.legalillegalhighs",
+			"type": "header",
+			"description": "Street Drugs Exposure - Legal-Illegal highs",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.legalillegalhighs",
+					"type": "info",
+					"description": "This section is visible because exposure to Legal-Illegal highs was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed..howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkLegalIllegalex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedLegalIllegalex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherLegalIllegalex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.legalillegalhighs.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkLegalIllegalex"
+								},
+								{
+									"id": "drugs.street.exposed.legalillegalhighs.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedLegalIllegalex"
+								},
+								{
+									"id": "drugs.street.exposedlegalillegalhighs..other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherLegalIllegalex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Legal / Illegal Highs",
+							"id": "drugs.street.exposed.legalillegalhighs.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "LegalIllegalex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.heroin",
+			"type": "header",
+			"description": "Street Drugs Exposure - Heroin",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.heroin",
+					"type": "info",
+					"description": "This section is visible because exposure to Heroin was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.heroin.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkHeroinex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedHeroinex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherHeroinex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.heroin.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkHeroinex"
+								},
+								{
+									"id": "drugs.street.exposed.heroin.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedHeroinex"
+								},
+								{
+									"id": "drugs.street.exposed.heroin.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherHeroinex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Heroin",
+							"id": "drugs.street.exposed.heroin.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Heroinex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.amphetamine",
+			"type": "header",
+			"description": "Street Drugs Exposure - Amphetamine",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.amphetamine",
+					"type": "info",
+					"description": "This section is visible because exposure to Amphetamine was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.amphetamine.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkAmphetamineex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedAmphetamineex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherAmphetamineex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.amphetamine.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkAmphetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.amphetamine.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedAmphetamineex"
+								},
+								{
+									"id": "drugs.street.exposed.amphetamine.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherAmphetamineex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Amphetamine",
+							"id": "drugs.street.exposed.amphetamine.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "Amphetamineex"
+		},
+		{
+			"id": "header.streetdrugs.exposure.other",
+			"type": "header",
+			"description": "Street Drugs Exposure - Other",
+			"tasks": [
+				{
+					"id": "info.drugs.exposed.other",
+					"type": "info",
+					"description": "This section is visible because exposure to Other Street Drugs was selected",
+					"tasks": [
+						{
+							"type": "checklist",
+							"id": "drugs.street.exposed.other.howtaken",
+							"description": "How was it taken?",
+							"values": [
+								{
+									"name": "Smoked",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Snorted",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallowed",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Injected",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Powder",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Liquid",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Drunk or Eaten",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "drunkotherex"
+								},
+								{
+									"name": "Inserted",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "insertedotherex"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherotherex"
+								}
+							],
+							"multiple": true,
+							"tasks": [
+								{
+									"id": "drugs.street.exposed.other.howdrunk",
+									"type": "textarea",
+									"description": "How was it drunk or eaten?",
+									"ifVarTrue": "drunkotherex"
+								},
+								{
+									"id": "drugs.street.exposed.other.howinserted",
+									"type": "textarea",
+									"description": "How was it inserted?",
+									"ifVarTrue": "insertedotherex"
+								},
+								{
+									"id": "drugs.street.exposed.other.other",
+									"type": "textarea",
+									"description": "Other",
+									"ifVarTrue": "otherotherex"
+								}
+							]
+						},
+						{
+							"type": "drughistory",
+							"drug": "Other",
+							"id": "drugs.street.exposed.other.history"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "otherex"
+		},
+		{
+			"id": "header.alcoholused",
+			"type": "header",
+			"description": "Alcohol Used",
+			"tasks": [
+				{
+					"id": "alcohol.12months",
+					"type": "picklist",
+					"description": "In the past 12 months have you had an alcoholic drink?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "alcohol.chooser",
+							"type": "checklist",
+							"description": "Declared Alcohol",
+							"multiple": true,
+							"values": [
+								{
+									"name": "Beer",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "beer"
+								},
+								{
+									"name": "Wine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "wine"
+								},
+								{
+									"name": "Cider",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "cider"
+								},
+								{
+									"name": "Alcopops",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "alcopops"
+								},
+								{
+									"name": "Fortified Wine",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "fortifiedwine"
+								},
+								{
+									"name": "Whiskey",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "whiskey"
+								},
+								{
+									"name": "Gin",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "gin"
+								},
+								{
+									"name": "Vodka",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "vodka"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otheralc"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "header.alcohol.use.beer",
+			"type": "header",
+			"description": "Alcohol Use - Beer",
+			"tasks": [
+				{
+					"type": "info",
+					"id": "info.alcohol.use.beer",
+					"description": "This section is visible because Beer was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"drug": "Beer",
+							"id": "alcohol.beer.history"
+						}
+					]
+				}
+				
+			],
+			"ifVarTrue": "beer"
+		},
+		{
+			"id": "header.alcohol.use.wine",
+			"type": "header",
+			"description": "Alcohol Use - Wine",
+			"tasks": [
+				{
+					"id": "info.alcohol.use.wine",
+					"type": "info",
+					"description": "This section is visible because Wine was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.wine.history",
+							"drug": "Wine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "wine"
+		},
+		{
+			"id": "header.alcohol.use.cider",
+			"type": "header",
+			"description": "Alcohol Use - Cider",
+			"tasks": [
+				{
+					"type": "info",
+					"id": "info.alcohol.cider",
+					"description": "This section is visible because Cider was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.cider.history",
+							"drug": "Cider"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "cider"
+		},
+		{
+			"id": "header.alcohol.use.alcopops",
+			"type": "header",
+			"description": "Alcohol Use - Alcopops",
+			"tasks": [
+				{
+					"id": "info.alcohol.alcopops",
+					"type": "info",
+					"description": "This section is visible because Alcopops was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.alcopops.history",
+							"drug": "Alcopops"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "alcopops"
+		},
+		{
+			"id": "header.alcohol.use.fortifiedwine",
+			"type": "header",
+			"description": "Alcohol Use - Fortified Wine",
+			"tasks": [
+				{
+					"id": "info.alcool.fortifiedwine",
+					"type": "info",
+					"description": "This section is visible because Fortified Wine was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.fortifiedwine.history",
+							"drug": "Fortified Wine"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "fortifiedwine"
+		},
+		{
+			"id": "header.alcohol.use.whiskey",
+			"type": "header",
+			"description": "Alcohol Use - Whiskey",
+			"tasks": [
+				{
+					"id": "info.alcohol.whiskey",
+					"type": "info",
+					"description": "This section is visible because Whiskey was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.whiskey.history",
+							"drug": "Whiskey"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "whiskey"
+		},
+		{
+			"id": "header.alcohol.use.gin",
+			"type": "header",
+			"description": "Alcohol Use - Gin",
+			"tasks": [
+				{
+					"id": "info.alcohol.gin",
+					"type": "info",
+					"description": "This section is visible because Gin was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.gin.history",
+							"drug": "Gin"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "gin"
+		},
+		{
+			"id": "header.alcohol.use.vodka",
+			"type": "header",
+			"description": "Alcohol Use - Vodka",
+			"tasks": [
+				{
+					"id": "info.alcohol.vodka",
+					"type": "info",
+					"description": "This section is visible because Vodka was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.vodka.history",
+							"drug": "Vodka"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "vodka"
+		},
+		{
+			"id": "header.alcohol.use.other",
+			"type": "header",
+			"description": "Alcohol Use - Other",
+			"tasks": [
+				{
+					"id": "info.alcohol.other",
+					"type": "info",
+					"description": "This section is visible because other was selected",
+					"tasks": [
+						{
+							"type": "drughistory",
+							"id": "alcohol.other.history",
+							"drug": "Other"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "otheralc"
+		},
+		{
+			"id": "header.hair.care",
+			"type": "header",
+			"description": "Hair Care",
+			"tasks": [
+				{
+					"id": "hair.wash",
+					"type": "picklist",
+					"description": "Do you wash your hair?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "hairwash"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "hair.dye.12months",
+					"type": "picklist",
+					"description": "In the last 12 months have you used Hair products? e.g Hair Dye or Colour",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false,
+					"tasks": [
+						{
+							"id": "hair.dye.12months.chooser",
+							"type": "checklist",
+							"description": "Declared hair products",
+							"values": [
+								{
+									"name": "Hair Dye or Colour",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairdye"
+								},
+								{
+									"name": "Hair Spray",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairspray"
+								},
+								{
+									"name": "Bleaching",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "bleaching"
+								},
+								{
+									"name": "Straightening",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "straightening"
+								},
+								{
+									"name": "Hair Gel",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairgel"
+								},
+								{
+									"name": "Hair Wax",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairwax"
+								},
+								{
+									"name": "Hair Conditioner",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairconditioner"
+								},
+								{
+									"name": "Scalp Medications",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "scalpmedications"
+								},
+								{
+									"name": "Other",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "otherhc"
+								}
+							],
+							"multiple": true
+						}
+					]
+				},
+				{
+					"id": "hair.swimming.12months",
+					"type": "picklist",
+					"description": "In the last 12 months have you been swimming?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "swimming"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				}
+			]
+		},
+
+		{
+			"id": "header.hair.scalp.wash",
+			"type": "header",
+			"description": "Hair Care Use - Hair Wash",
+			"tasks": [
+				{
+					"id":"info.hair.scalp.wash",
+					"type": "info",
+					"description": "This section is visible because the customer indicated they wash their hair",
+					"tasks": [
+						{
+							"id": "hair.scalp.wash.onlywater",
+							"type": "picklist",
+							"description": "Water only?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.wash.onlywater.comment",
+									"type": "textarea",
+									"description": "Comment"
+								},
+								{
+									"id": "hair.scalp.wash.onlywater.history",
+									"type": "activityhistory",
+									"activity": "washed"
+								}
+
+							]
+						},
+						{
+							"id": "hair.scalp.wash.shampoo",
+							"type": "picklist",
+							"description": "Shampoo?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.wash.shampoo.comment",
+									"type": "textarea",
+									"description": "Comment"
+								},
+								{
+									"id": "hair.scalp.wash.shampoo.history",
+									"type": "activityhistory",
+									"activity": "washed"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "hairwash"
+		},
+		{
+			"id": "header.hair.dye",
+			"type": "header",
+			"description": "Hair Care Use - Hair Dye or Colour",
+			"tasks": [
+				{
+					"id": "info.header.hair.dye",
+					"type": "info",
+					"description": "This section is visible because Hair Dye or Colour has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.dye.lastused",
+							"type": "date",
+							"description": "Date last used"
+						},
+						{
+							"id": "hair.scalp.dye.type",
+							"type": "picklist",
+							"description": "Type of Hair Dye/Colour used",
+							"values": [
+								{
+									"name": "Permanent",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Temporary",
+									"showtasks": false,
+									"exclusive": false
+								}
+							]
+						},
+
+						{
+							"id": "hair.scalp.dye.brand",
+							"type": "textarea",
+							"description": "Brand"
+						},
+						{
+							"id": "hair.scalp.dye.colour",
+							"type": "textarea",
+							"description": "Colour"
+						},
+						{
+							"id": "hair.scalp.dye.details",
+							"type": "textarea",
+							"description": "Details"
+						},
+						{
+							"id": "hair.scalp.dye.previous",
+							"type":"picklist",
+							"description": "Did you dye or colour your hair previous to this?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"tasks": [
+								{
+									"id": "hair.scalp.dye.previous.lastused",
+									"type": "date",
+									"description": "Date used"
+								},
+								{
+									"id": "hair.scalp.dye.previous.type",
+									"type": "picklist",
+									"description": "Type of Hair Dye/Colour used",
+									"values": [
+										{
+											"name": "Permanent",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Temporary",
+											"showtasks": false,
+											"exclusive": false
+										}
+									]
+								},
+								{
+									"id": "hair.scalp.dye.previous.brand",
+									"type": "textarea",
+									"description": "Brand"
+								},
+								{
+									"id": "hair.scalp.dye.previous.colour",
+									"type": "textarea",
+									"description": "Colour"
+								},
+								{
+									"id": "hair.scalp.dye.previous.details",
+									"type": "textarea",
+									"description": "Details"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "hairdye"
+		},
+		{
+			"id": "header.hair.scalp.hairspray",
+			"type": "header",
+			"description": "Hair Care Use - Hair Spray",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.hairspray",
+					"type": "info",
+					"description": "This section is visible because Hair Spray has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.hairspray.type",
+							"type": "picklist",
+							"description": "Type",
+							"values": [
+								{
+									"name": "Pump",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Aerosol",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "hair.scalp.hairspray.site",
+							"type": "checklist",
+							"description": "Site where applied",
+							"values": [
+								{
+									"name": "Full head",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Partial - near sample site",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairspraynear"
+								},
+								{
+									"name": "Partial - away from sample site",
+									"showtasks": true,
+									"exclusive": false,
+									"setVarTrue": "hairsprayaway"
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.hairspray.type.nearcomment",
+									"type": "textarea",
+									"description": "Please specify",
+									"ifVarTrue": "hairspraynear"
+								},
+								{
+									"id": "hair.scalp.hairspray.type.awaycomment",
+									"type": "textarea",
+									"description": "Please specify",
+									"ifVarTrue": "hairsprayaway"
+								}
+							]
+						},
+						{
+							"id": "hair.scalp.hairspray.comment",
+							"type": "textarea",
+							"description": "Comments"
+						},
+						{
+							"id": "hair.scalp.hairspray.history",
+							"type": "activityhistory",
+							"activity": "sprayed"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "hairspray"
+		},
+		{
+			"id": "header.hair.scalp.bleaching",
+			"type": "header",
+			"description": "Hair Care Use - Bleaching",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.bleaching",
+					"type": "info",
+					"description": "This section is visible because Bleaching has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.bleaching.brand",
+							"type": "textarea",
+							"description": "Brand"
+						},
+						{
+							"id": "hair.scalp.bleaching.history",
+							"type": "activityhistory",
+							"activity": "bleached"
+						}
+					]
+				}
+
+			],
+			"ifVarTrue": "bleaching"
+		},
+		{
+			"id": "header.hair.scalp.straightening",
+			"type": "header",
+			"description": "Hair Care Use - Straightening",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.straightening",
+					"type": "info",
+					"description": "This section is visible because Straightening has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.straightening.thermal",
+							"type": "picklist",
+							"description": "Thermal hair straightening?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.straightening.thermal.length",
+									"type": "picklist",
+									"description": "Used on",
+									"values": [
+										{
+											"name": "Full length",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Other",
+											"showtasks": true,
+											"exclusive": false
+										}
+									],
+									"multiple": false,
+									"tasks": [
+										{
+											"id": "hair.scalp.straightening.thermal.length.other",
+											"type": "textarea",
+											"description": "Other"
+										}
+									]
+								},
+								{
+									"id": "hair.scalp.straightening.thermal.history",
+									"type": "activityhistory",
+									"activity": "straightened"
+								}
+							]
+						},
+						{
+							"id": "hair.scalp.straightening.other",
+							"type": "picklist",
+							"description": "Other type of hair straightening?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.straightening.other.comment",
+									"type": "textarea",
+									"description": "Comment"
+								},
+								{
+									"id": "hair.scalp.straightening.other.length",
+									"type": "picklist",
+									"description": "Used on",
+									"values": [
+										{
+											"name": "Full length",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Other",
+											"showtasks": true,
+											"exclusive": false
+										}
+									],
+									"multiple": false,
+									"tasks": [
+										{
+											"id": "hair.scalp.straightening.other.length.other",
+											"type": "textarea",
+											"description": "Other"
+										}
+									]
+								},
+								{
+									"id": "hair.scalp.straightening.thermal.history",
+									"type": "activityhistory",
+									"activity": "straightened"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "straightening"
+		},
+		{
+			"id": "header.hair.scalp.gel",
+			"type": "header",
+			"description": "Hair Care Use - Hair Gel",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.gel",
+					"type": "info",
+					"description": "This section is visible because Hair Gel has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.gel.comments",
+							"type": "textarea",
+							"description": "Comments"
+						},
+						{
+							"id": "hair.scalp.gel.history",
+							"type": "activityhistory",
+							"activity": "gelled"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "hairgel"
+		},
+		{
+			"id": "header.hair.scalp.wax",
+			"type": "header",
+			"description": "Hair Care Use - Hair Wax",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.wax",
+					"type": "info",
+					"description": "This section is visible because Hair Wax has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.wax.comments",
+							"type": "textarea",
+							"description": "Comments"
+						},
+						{
+							"id": "hair.scalp.wax.history",
+							"type": "activityhistory",
+							"activity": "waxed"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "hairwax"
+		},
+		{
+			"id": "header.hair.scalp.conditioner",
+			"type": "header",
+			"description": "Hair Care Use - Hair Conditioner",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.conditioner",
+					"type": "info",
+					"description": "This section is visible because Hair Conditioner has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.conditioner.comments",
+							"type": "textarea",
+							"description": "Comments"
+						},
+						{
+							"id": "hair.scalp.conditioner.timeonscalp",
+							"type": "picklist",
+							"description": "How long is conditioner left on scalp?",
+							"values": [
+								{
+									"name": "1min",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "2 to 3 mins",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "5 mins",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "10 mins",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "More than 10 mins",
+									"showtasks": true,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "hair.scalp.conditioner.timeonscalpcomments",
+									"type": "textarea",
+									"description": "Comments about time on scalp"
+								}
+							]
+						},
+						{
+							"id": "hair.scalp.conditioner.brand",
+							"type": "textarea",
+							"description": "Brand"
+						},
+						{
+							"id": "hair.scalp.conditioner.history",
+							"type": "activityhistory",
+							"activity": "conditionered"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "hairconditioner"
+		},
+		{
+			"id": "header.hair.scalp.medications",
+			"type": "header",
+			"description": "Hair Care Use - Scalp Medications",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.medications",
+					"type": "info",
+					"description": "This section is visible because Scalp Medications has been used",
+					"tasks": [
+						{
+							"id": "hair.scalp.medications.names",
+							"type": "textarea",
+							"description": "Medication Name"
+						},
+						{
+							"id": "hair.scalp.medications.history",
+							"type": "drughistory",
+							"drug": "my scalp medication"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "scalpmedications"
+		},
+		{
+			"id": "header.hair.scalp.other",
+			"type": "header",
+			"description": "Hair Care Use - Other",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.other",
+					"type": "info",
+					"description": "This section is visible because Other Hair Care Products has been used",
+					"tasks": [
+						{
+							"id": "info.hair.scalp.other.comments",
+							"type": "textarea",
+							"description": "Comment"
+						},
+						{
+							"id": "hair.scalp.other.history",
+							"type": "drughistory",
+							"drug": "my other hair products medication"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "otherhc"
+		},
+		{
+			"id": "header.hair.scalp.swim",
+			"type": "header",
+			"description": "Hair Care - Swimming",
+			"tasks": [
+				{
+					"id": "hair.scalp.swim.pool",
+					"type": "picklist",
+					"description": "Have you swam in a pool?",
+					"values": [
+
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"tasks": [
+
+						{
+							"id": "hair.scalp.swim.pool.history",
+							"type": "activityhistory",
+							"activity": "swam in a pool"
+
+						},
+						{
+							"id": "hair.scalp.swim.pool.submerged",
+							"type": "picklist",
+							"description": "Was head submerged under water?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "hair.scalp.swim.pool.cap",
+							"type": "picklist",
+							"description": "Was a swimming cap used?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					]
+				},
+				{
+					"id": "hair.scalp.swim.sea",
+					"type": "picklist",
+					"description": "Have you swam in the Sea?",
+					"values": [
+
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"tasks": [
+
+						{
+							"id": "hair.scalp.swim.sea.history",
+							"type": "activityhistory",
+							"activity": "swam in the sea"
+
+						},
+						{
+							"id": "hair.scalp.swim.sea.submerged",
+							"type": "picklist",
+							"description": "Was head submerged under water?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "hair.scalp.swim.sea.cap",
+							"type": "picklist",
+							"description": "Was a swimming cap used?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					]
+				},
+				{
+					"id": "hair.scalp.swim.river",
+					"type": "picklist",
+					"description": "Have you swam in a river?",
+					"values": [
+
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"tasks": [
+
+						{
+							"id": "hair.scalp.swim.river.history",
+							"type": "activityhistory",
+							"activity": "swam in a river"
+
+						},
+						{
+							"id": "hair.scalp.swim.river.submerged",
+							"type": "picklist",
+							"description": "Was head submerged under water?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "hair.scalp.swim.river.cap",
+							"type": "picklist",
+							"description": "Was a swimming cap used?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					]
+				},
+				{
+					"id": "hair.scalp.swim.other",
+					"type": "picklist",
+					"description": "Have you swam in some other place?",
+					"values": [
+
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"tasks": [
+						{
+							"id": "hair.scalp.swim.other.name",
+							"type": "textarea",
+							"description": "What was it?"
+						},
+
+						{
+							"id": "hair.scalp.swim.other.history",
+							"type": "activityhistory",
+							"activity": "swam in a other"
+
+						},
+						{
+							"id": "hair.scalp.swim.other.submerged",
+							"type": "picklist",
+							"description": "Was head submerged under water?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "hair.scalp.swim.other.cap",
+							"type": "picklist",
+							"description": "Was a swimming cap used?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					]
+				}
+			],
+			"ifVarTrue": "swimming"
+		},
+		{
+			"id": "header.haircutting",
+			"type": "header",
+			"description": "Hair Cutting, Shaving & Grooming",
+			"tasks": [
+				{
+					"id": "hair.scalp.cut",
+					"type": "picklist",
+					"description": "In the last 12 months have you cut your scalp hair?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "scalphaircut"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "hair.scalp.comb",
+					"type": "picklist",
+					"description": "How often do you comb/brush your scalp hair?",
+					"values": [
+						{
+							"name": "Daily",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Weekly",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "Monthly",
+							"showtasks": false,
+							"exclusive": false
+						},
+						{
+							"name": "None",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "hair.scalp.shave.12months",
+					"type": "picklist",
+					"description": "In the last 12 months have you shaved scalp to skin?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "scalpskin"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				}
+			]
+		},
+		{
+			"id": "header.hygiene",
+			"type": "header",
+			"description": "Personal Hygiene",
+			"tasks": [
+				{
+					"id": "alcohol.mouthwash",
+					"type": "picklist",
+					"description": "Do you use Alcohol containing mouthwash?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "mouthwash"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "alcohol.handantiseptics",
+					"type": "picklist",
+					"description": "Do you use Alcohol containing hand antiseptics?",
+					"values": [
+						{
+							"name": "Yes",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "handantiseptics"
+						},
+						{
+							"name": "No",
+							"showtasks": false,
+							"exclusive": false
+						}
+					],
+					"multiple": false
+				},
+				{
+					"id": "alcohol.deodorants.chooser",
+					"type": "checklist",
+					"description": "Do you use Deodorant, Antiperspirant, Aftershave or Perfume?",
+					"values": [
+						{
+							"name": "Deodorants",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "deodorants"
+						},
+						{
+							"name": "Antiperspirant",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "antiperspirant"
+						},
+						{
+							"name": "Aftershave",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "aftershave"
+						},
+						{
+							"name": "Perfume",
+							"showtasks": true,
+							"exclusive": false,
+							"setVarTrue": "perfume"
+						},
+						{
+							"name": "None",
+							"showtasks": false,
+							"exclusive": true
+						}
+					],
+					"multiple": true
+				}
+			]
+		},
+		
+		
+		
+		
+
+		{
+			"id": "header.hair.scalp.cut",
+			"type": "header",
+			"description": "Scalp Hair Cut",
+			"tasks": [
+				{
+					"id": "info.hair.scalp.cut",
+					"type": "info",
+					"description": "This section is visible because Scalp Hair Cut was selected",
+					"tasks": [
+						{
+							"id": "hair.scalp.cut.date",
+							"type": "date",
+							"description": "Date last cut?"
+						},
+						{
+							"id": "hair.scalp.cut.length",
+							"type": "textarea",
+							"description": "Length cut to or clipper guard number"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "scalphaircut"
+		},
+		{
+			"id": "header.hair.scalp.toskin",
+			"type": "header",
+			"description": "Scalp to Skin",
+			"tasks": [
+				{
+					"type": "info",
+					"id": "info.hair.scalp.toskin",
+					"description": "This section is visible because Scalp to Skin was selected",
+					"tasks": [
+						{
+							"id": "hair.scalp.toskin.date",
+							"type": "date",
+							"description": "Date last shaved?"
+						}
+					]
+				}
+			],
+			"ifVarTrue": "scalpskin"
+		},
+		{
+			"id": "header.alcohol.mouthwash",
+			"type": "header",
+			"description": "Personal Hygiene - Alcohol containing mouthwash",
+			"tasks": [
+				{
+			"id": "info.alcohol.mouthwash",
+					"type": "info",
+					"description": "This section is visible because Alcohol containing mouthwash was selected",
+					"tasks": [
+						{
+							"id": "alcohol.mouthwash.method",
+							"type": "picklist",
+							"description": "Method",
+							"values": [
+								{
+									"name": "Spit",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Swallow",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						},
+						{
+							"id": "alcohol.mouthwash.frequency",
+							"type": "picklist",
+							"description": "Frequency",
+							"values": [
+								{
+									"name": "Daily",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Weekly",
+									"showtasks": false,
+									"exclusive": false
+								},
+								{
+									"name": "Monthly",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false
+						}
+					]
+				}
+			],
+			"ifVarTrue": "mouthwash"
+		},
+		{
+			"id": "header.alcohol.handantiseptics",
+			"type": "header",
+			"description": "Personal Hygiene - Alcohol containing hand antiseptics",
+			"tasks": [
+				{
+					"id": "info.alcohol.handantiseptics",
+					"type": "info",
+					"description": "This section is visible because Alcohol containing hand antiseptics was selected",
+					"tasks": [
+						{
+							"id": "alcohol.handantiseptics.samplesites",
+							"type": "picklist",
+							"description": "Is hand antiseptic ever applied to sample sites?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "alcohol.handantiseptics.samplesites.comments",
+									"type": "textarea",
+									"description": "Comments"
+								},
+								{
+									"id": "alcohol.handantiseptics.samplesites.frequency",
+									"type": "picklist",
+									"description": "Frequency",
+									"values": [
+										{
+											"name": "Daily",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Weekly",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Monthly",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": false
+								},
+								{
+									"id": "alcohol.handantiseptics.lastused",
+									"type": "dateish",
+									"description": "Date last used?"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "handantiseptics"
+		},
+		{
+			"id": "header.deodorants",
+			"type": "header",
+			"description": "Personal Hygiene - Deodorants",
+			"tasks": [
+				{
+					"id": "info.deodorants",
+					"type": "info",
+					"description": "This section is visible because Deodorant use was selected",
+					"tasks": [
+						{
+							"id": "deodorants.atsites",
+							"type": "picklist",
+							"description": "Is deodorant ever applied to sample sites?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "deodorants.comments",
+									"type": "textarea",
+									"description": "Comments"
+								},
+								{
+									"id": "deodorants.frequency",
+									"type": "picklist",
+									"description": "Frequency",
+									"values": [
+										{
+											"name": "Daily",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Weekly",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Monthly",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": false
+								},
+								{
+									"id": "deodorants.sites",
+									"type": "checklist",
+									"description": "Area",
+									"values": [
+										{
+											"name": "Scalp",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Arm",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Chest",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Back",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Legs",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Underarm",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": true
+								},
+								{
+									"id": "deodorants.lastused",
+									"type": "dateish",
+									"description": "Date last used?"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "deodorants"
+		},
+		{
+			"id": "header.antiperspirant",
+			"type": "header",
+			"description": "Personal Hygiene - Antiperspirant",
+			"tasks": [
+				{
+					"id": "info.antiperspirant",
+					"type": "info",
+					"description": "This section is visible because Antiperspirant use was selected",
+					"tasks": [
+						{
+							"id": "antiperspirant.atsites",
+							"type": "picklist",
+							"description": "Is antiperspirant ever applied to sample sites?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "antiperspirant.comments",
+									"type": "textarea",
+									"description": "Comments"
+								},
+								{
+									"id": "antiperspirant.frequency",
+									"type": "picklist",
+									"description": "Frequency",
+									"values": [
+										{
+											"name": "Daily",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Weekly",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Monthly",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": false
+								},
+								{
+									"id": "antiperspirant.sites",
+									"type": "checklist",
+									"description": "Area",
+									"values": [
+										{
+											"name": "Scalp",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Arm",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Chest",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Back",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Legs",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Underarm",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": true
+								},
+								{
+									"id": "antiperspirant.lastused",
+									"type": "dateish",
+									"description": "Date last used?"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "antiperspirant"
+		},
+		{
+			"id": "header.aftershave",
+			"type": "header",
+			"description": "Personal Hygiene - Aftershave",
+			"tasks": [
+				{
+					"id": "info.aftershave",
+
+					"type": "info",
+					"description": "This section is visible because Aftershave use was selected",
+					"tasks": [
+						{
+							"id": "aftershave.atsites",
+							"type": "picklist",
+							"description": "Is aftershave ever applied to sample sites?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "aftershave.comments",
+									"type": "textarea",
+									"description": "Comments"
+								},
+								{
+									"id": "aftershave.frequency",
+									"type": "picklist",
+									"description": "Frequency",
+									"values": [
+										{
+											"name": "Daily",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Weekly",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Monthly",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": false
+								},
+								{
+									"id": "aftershave.sites",
+									"type": "checklist",
+									"description": "Area",
+									"values": [
+										{
+											"name": "Scalp",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Arm",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Chest",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Back",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Legs",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Underarm",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": true
+								},
+								{
+									"id": "aftershave.lastused",
+									"type": "dateish",
+									"description": "Date last used?"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "aftershave"
+		},
+		{
+			"id": "header.perfume",
+			"type": "header",
+			"description": "Personal Hygiene - Perfume",
+			"tasks": [
+				{
+					"id": "info.perfume",
+					"type": "info",
+					"description": "This section is visible because Perfume use was selected",
+					"tasks": [
+						{
+							"id": "perfume.atsites",
+							"type": "picklist",
+							"description": "Is perfume ever applied to sample sites?",
+							"values": [
+								{
+									"name": "Yes",
+									"showtasks": true,
+									"exclusive": false
+								},
+								{
+									"name": "No",
+									"showtasks": false,
+									"exclusive": false
+								}
+							],
+							"multiple": false,
+							"tasks": [
+								{
+									"id": "perfume.comments",
+									"type": "textarea",
+									"description": "Comments"
+								},
+								{
+									"id": "perfume.frequency",
+									"type": "picklist",
+									"description": "Frequency",
+									"values": [
+										{
+											"name": "Daily",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Weekly",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Monthly",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": false
+								},
+								{
+							"id": "perfume.sites",
+									"type": "checklist",
+									"description": "Area",
+									"values": [
+										{
+											"name": "Scalp",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Arm",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Chest",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Back",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Legs",
+											"showtasks": false,
+											"exclusive": false
+										},
+										{
+											"name": "Underarm",
+											"showtasks": false,
+											"exclusive": false
+										}
+									],
+									"multiple": true
+								},
+								{
+							"id": "perfume.lastused",
+									"type": "dateish",
+									"description": "Date last used?"
+								}
+							]
+						}
+					]
+				}
+			],
+			"ifVarTrue": "perfume"
+		},
+		{
+			"id": "header.finish",
+			"type": "header",
+			"description": "Review and Finish",
+			"tasks": [
+				{
+					"id": "review",
+					"type": "review",
+					"description": "Review your answers below"
+				},
+				{
+					"id": "signature",
+					"type": "signature",
+					"description": "Signature"
+				},
+				{
+					"id": "collectorname",
+					"name": "Collector Name",
+					"type": "collector"
+				},
+				{
+					"id": "submit",
+					"type":"submit"
+				}
+			]
+		}
+	]
+}

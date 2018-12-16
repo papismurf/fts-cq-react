@@ -18,19 +18,16 @@ class NavbarPage extends Component {
                 <Navbar color="light-blue lighten-4" style={{marginTop: '20px'}} light>
                     <Container>
                         <NavbarBrand>
-                            Navbar
+                            FTS CQ
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggleCollapse('navbarCollapse1')} />
                         <Collapse id="navbarCollapse1" isOpen={this.state.collapseID} navbar>
                             <NavbarNav left>
                                 <NavItem active>
-                                    <NavLink to="#!">Home</NavLink>
+                                    <NavLink to="/">Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink to="#!">Link</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink to="#!">Profile</NavLink>
+                                    <NavLink to="/login">Login</NavLink>
                                 </NavItem>
                             </NavbarNav>
                         </Collapse>

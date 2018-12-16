@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import "../App.css";
+import "./Login.css";
 
 export default class Login extends Component {
     constructor(props) {
@@ -28,7 +28,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="Login">
+            <div className="Login Login-header">
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>

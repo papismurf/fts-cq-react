@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
+import "../logo.svg";
+import logo from "../logo.svg";
 
 export default class Login extends Component {
     constructor(props) {
@@ -29,6 +31,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="Login Login-header">
+                <img src={logo} className="App-logo" alt="logo" />
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="email" bsSize="large">
                         <ControlLabel>Email</ControlLabel>

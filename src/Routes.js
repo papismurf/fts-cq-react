@@ -12,6 +12,7 @@ class Routes extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route path="/login" exact component={Login}/>
                 <Route path="/questionnaire" exact component={Questionnaire}/>
+                { /* Catch all unmatched routes */ }
                 <Route component={NotFound}/>
             </Switch>
         );

@@ -23,6 +23,7 @@ import process from '../helper';
 
 
 
+
 widgets.icheck(Survey, $);
 widgets.select2(Survey, $);
 widgets.inputmask(Survey);
@@ -37,7 +38,6 @@ widgets.autocomplete(Survey, $);
 widgets.bootstrapslider(Survey);
 
 class Questionnaire extends Component {
-
 
     componentWillMount() {
         import("icheck");

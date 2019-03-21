@@ -18,7 +18,7 @@ export default class FooterPage extends React.Component {
                 <div className="footer-copyright text-center py-3">
                     <Container fluid>
                         &copy; {new Date().getFullYear()} Copyright:{" "}
-                        <a href="https://www.forensic-testing.co.uk"> Forensic Testing Services Ltd.</a>
+                        <a href="https://www.example.com"> Example Ltd.</a>
                     </Container>
                 </div>
             </Footer>
